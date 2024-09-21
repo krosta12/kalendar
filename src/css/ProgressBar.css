@@ -1,0 +1,12 @@
+.container {
+    position: absolute;
+    background-color: #ff6060;
+    width: 3vw;
+}
+
+.Bar {
+
+    background-color: #7cffaa;
+    width: 3vw;
+    transition: cubic-bezier(0.455, 0.03, 0.515, 0.955) 10s;
+}

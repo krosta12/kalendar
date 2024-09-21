@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import ICAL from "ical.js";
+import { MainPage } from "./components/MainPage";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -11,6 +13,24 @@ function App() {
     start: "",
     end: "",
   });
+
+  useEffect(() => {
+    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+    setEvents(storedEvents);
+  }, []);
+
+  useEffect(() => {
+    if (events.length > 0) {
+      const eventsWithIds = events.map((event) => {
+        if (!event.id) {
+          return { ...event, id: uuidv4() };
+        }
+        return event;
+      });
+
+      localStorage.setItem("events", JSON.stringify(eventsWithIds));
+    }
+  }, [events]);
 
   const onDrop = (acceptedFiles) => {
     acceptedFiles.forEach((file) => {
@@ -62,15 +82,33 @@ function App() {
           }
         });
 
-        setEvents((prevEvents) => sortEvents([...prevEvents, ...newEvents]));
+        const filteredEvents = filterDuplicates([...events, ...newEvents]);
+        setEvents(sortEvents(filteredEvents));
       };
 
       reader.readAsText(file);
     });
   };
+
   const sortEvents = (events) => {
     return events.sort((a, b) => new Date(a.start) - new Date(b.start));
   };
+
+  const filterDuplicates = (newEvents) => {
+    const uniqueEvents = new Map();
+    newEvents.forEach((event) => {
+      const key = `${event.title}-${event.start}`;
+      if (!uniqueEvents.has(key)) {
+        uniqueEvents.set(key, event);
+      }
+    });
+    return Array.from(uniqueEvents.values());
+  };
+  const handleDeleteEvent = (id) => {
+    const updatedEvents = events.filter((event) => event.id !== id);
+    setEvents(updatedEvents);
+  };
+
   const handleAddEvent = () => {
     const { title, description, location, start, end } = newEvent;
     if (!title || !start || !end) {
@@ -88,13 +126,16 @@ function App() {
       end: new Date(end).toISOString(),
     };
 
-    setEvents((prevEvents) => sortEvents([...prevEvents, newEventData]));
+    const updatedEvents = filterDuplicates([...events, newEventData]);
+    setEvents(sortEvents(updatedEvents));
+
     setNewEvent({
       title: "",
       description: "",
       location: "",
       start: "",
       end: "",
+      id: uuidv4(),
     });
   };
 
@@ -113,84 +154,17 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Google Calendar Clone</h1>
-
-      <div {...getRootProps({ className: "dropzone" })} style={styles.dropzone}>
-        <input {...getInputProps()} />
-        <p>Перетащите сюда .ics файл или кликните для загрузки</p>
-      </div>
-
-      <h2>Добавить новое событие:</h2>
-      <div style={styles.form}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Название"
-          value={newEvent.title}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="description"
-          placeholder="Описание"
-          value={newEvent.description}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="location"
-          placeholder="Место"
-          value={newEvent.location}
-          onChange={handleChange}
-        />
-        <input
-          type="datetime-local"
-          name="start"
-          placeholder="Дата начала"
-          value={newEvent.start}
-          onChange={handleChange}
-        />
-        <input
-          type="datetime-local"
-          name="end"
-          placeholder="Дата окончания"
-          value={newEvent.end}
-          onChange={handleChange}
-        />
-        <button onClick={handleAddEvent}>Добавить событие</button>
-      </div>
-
-      <h2>События:</h2>
-      <ul>
-        {events.map((event, index) => (
-          <li key={index}>
-            <strong>{event.title}</strong>
-            <p>{event.description}</p>
-            <p>Место: {event.location}</p>
-            <p>
-              Дата начала: {new Date(event.start).toLocaleString()}, Дата
-              окончания: {new Date(event.end).toLocaleString()}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <MainPage
+        getRootProps={getRootProps}
+        newEvent={newEvent}
+        handleChange={handleChange}
+        events={events}
+        getInputProps={getInputProps}
+        onDelete={handleDeleteEvent}
+        handleAddEvent={handleAddEvent}
+      />
     </div>
   );
 }
-
-const styles = {
-  dropzone: {
-    border: "2px dashed #000",
-    padding: "20px",
-    marginBottom: "20px",
-    textAlign: "center",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    marginBottom: "20px",
-  },
-};
 
 export default App;

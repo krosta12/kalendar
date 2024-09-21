@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button {
+  width: 20vw;
+}
+
+label {
+  display: block;
+}
+
+.eventCreatingBox {
+  display: flex;
+  justify-content: center;
+}
+
+.postEvent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
