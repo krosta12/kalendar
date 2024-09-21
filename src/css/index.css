@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1d4ccd94;
 }
 
 code {
@@ -13,11 +14,29 @@ code {
 }
 
 button {
-  width: 20vw;
+  width: 10vw;
+  margin: 0 1vw;
+  height: 1.3vw;
+  border-radius: .3vw;
+  background-color: #91dab3;
+}
+
+.deleteButton {
+  background-color: #ef6868;
 }
 
 label {
   display: block;
+}
+
+h3 {
+  display: inline-block;
+}
+
+.MainCardDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5vw;
 }
 
 .eventCreatingBox {
@@ -32,11 +51,26 @@ label {
 }
 
 .isntDone {
-  background-color: #696969;
+  background-color: #ff000066;
+}
+
+.dropzone {
+  background-color: #fcfcfcb1;
+  padding: 4vw;
+  text-align: center;
+  tab-size: 2vw;
+  font-weight: 800;
+  border-radius: 4vw;
 }
 
 li {
   border-radius: 1vw;
   margin: 1vw 0;
   padding: 1vw 0;
+  background-color: #ffffffa2;
+}
+
+.ButtonHandler {
+  display: flex;
+  justify-content: space-around;
 }

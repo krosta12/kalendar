@@ -31,18 +31,33 @@ export function Card({ temp, event, onDelete }) {
       id={"Card" + temp}
       style={{ backgroundColor: isChecked && "lightgreen" }}
     >
-      <strong>{event.title}</strong>
-      <p>{event.description}</p>
-      <p>Место: {event.location}</p>
-      <p>
-        Дата начала: {new Date(event.start).toLocaleString()}, Дата окончания:{" "}
-        {new Date(event.end).toLocaleString()}
-      </p>
-      <Button text="Удалить" onClick={handleDelete} />
-      <Button
-        text={isChecked ? "Убрать значение" : "Добавить значение"}
-        onClick={handleButtonClick}
-      />
+      <div className="MainCardDiv">
+        {event.title && <h2>{event.title}</h2>}
+
+        {event.description && <h4>{event.description}</h4>}
+
+        {event.location && (
+          <p>
+            <h3>Место:</h3> {event.location}
+          </p>
+        )}
+
+        <p>
+          <h3>Дата начала:</h3> {new Date(event.start).toLocaleString()}, Дата
+          окончания: {new Date(event.end).toLocaleString()}
+        </p>
+        <div className="ButtonHandler">
+          <Button
+            text={isChecked ? "Убрать значение" : "Добавить значение"}
+            onClick={handleButtonClick}
+          />
+          <Button
+            className="deleteButton"
+            text="Удалить"
+            onClick={handleDelete}
+          />
+        </div>
+      </div>
     </li>
   );
 }
