@@ -12,6 +12,7 @@ function App() {
     location: "",
     start: "",
     end: "",
+    id: typeof uuidv4(),
   });
 
   useEffect(() => {
@@ -64,6 +65,7 @@ function App() {
                 location: event.location,
                 start: nextOccurrence.toString(),
                 end: event.endDate.toString(),
+                id: event.id,
               });
               nextOccurrence = iterator.next();
             }
@@ -77,6 +79,7 @@ function App() {
                 location: event.location,
                 start: event.startDate.toString(),
                 end: event.endDate.toString(),
+                id: event.id,
               },
             ];
           }
@@ -124,6 +127,7 @@ function App() {
       location,
       start: new Date(start).toISOString(),
       end: new Date(end).toISOString(),
+      id: uuidv4(),
     };
 
     const updatedEvents = filterDuplicates([...events, newEventData]);

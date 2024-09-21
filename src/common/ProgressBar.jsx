@@ -3,7 +3,6 @@ import "../css/ProgressBar.css";
 
 export function ProgressBar(props) {
   const [bar, setBar] = useState(0);
-  let now = new Date();
 
   const style = {
     height:

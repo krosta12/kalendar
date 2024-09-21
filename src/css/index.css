@@ -30,3 +30,13 @@ label {
   flex-direction: column;
   align-items: center;
 }
+
+.isntDone {
+  background-color: #696969;
+}
+
+li {
+  border-radius: 1vw;
+  margin: 1vw 0;
+  padding: 1vw 0;
+}

@@ -3,36 +3,33 @@ import Button from "./Button";
 
 export function Card({ temp, event, onDelete }) {
   const [isChecked, setIsChecked] = useState(() => {
-    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-    return storedEvents[temp] ? storedEvents[temp].checked : false;
+    const storedValue = localStorage.getItem(`event-${event.id}`);
+    return storedValue ? JSON.parse(storedValue) : false;
   });
 
   useEffect(() => {
-    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-    storedEvents[temp] = { ...event, checked: isChecked };
-    localStorage.setItem("events", JSON.stringify(storedEvents));
-  }, [isChecked, temp, event]);
+    localStorage.setItem(`event-${event.id}`, JSON.stringify(isChecked));
+  }, [isChecked, event.id]);
 
   const handleButtonClick = () => {
     setIsChecked((prev) => !prev);
   };
 
   const handleDelete = () => {
-    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-    const eventIndex = storedEvents.findIndex((e) => e.id === temp);
-
-    if (eventIndex !== -1) {
-      storedEvents.splice(eventIndex, 1);
-      localStorage.setItem("events", JSON.stringify(storedEvents));
-      onDelete(temp);
-    }
+    localStorage.removeItem(`event-${event.id}`);
+    onDelete(event.id);
   };
 
   return (
     <li
+      className={
+        new Date() > new Date(event.start) && isChecked
+          ? "Done"
+          : new Date() > new Date(event.start) && "isntDone"
+      }
       key={temp}
       id={"Card" + temp}
-      style={{ backgroundColor: isChecked ? "lightgreen" : "transparent" }}
+      style={{ backgroundColor: isChecked && "lightgreen" }}
     >
       <strong>{event.title}</strong>
       <p>{event.description}</p>
@@ -43,7 +40,7 @@ export function Card({ temp, event, onDelete }) {
       </p>
       <Button text="Удалить" onClick={handleDelete} />
       <Button
-        text={isChecked ? "Убрать значение" : "Margi tehtuks"}
+        text={isChecked ? "Убрать значение" : "Добавить значение"}
         onClick={handleButtonClick}
       />
     </li>

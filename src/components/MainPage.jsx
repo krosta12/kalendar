@@ -46,6 +46,7 @@ export function MainPage(props) {
               placeholder="Дата начала"
               value={props.newEvent.start}
               onChange={props.handleChange}
+              min={new Date().toISOString().slice(0, 16)}
             />
             <Input
               type="datetime-local"
@@ -53,7 +54,9 @@ export function MainPage(props) {
               placeholder="Дата окончания"
               value={props.newEvent.end}
               onChange={props.handleChange}
+              min={props.newEvent.start}
             />
+
             <Button onClick={props.handleAddEvent} text="Добавить событие" />
           </div>
         </div>
