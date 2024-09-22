@@ -12,6 +12,7 @@ function App() {
     location: "",
     start: "",
     end: "",
+    isChecked: false,
     id: typeof uuidv4(),
   });
 
@@ -22,14 +23,7 @@ function App() {
 
   useEffect(() => {
     if (events.length > 0) {
-      const eventsWithIds = events.map((event) => {
-        if (!event.id) {
-          return { ...event, id: uuidv4() };
-        }
-        return event;
-      });
-
-      localStorage.setItem("events", JSON.stringify(eventsWithIds));
+      localStorage.setItem("events", JSON.stringify(events));
     }
   }, [events]);
 
@@ -65,7 +59,8 @@ function App() {
                 location: event.location,
                 start: nextOccurrence.toString(),
                 end: event.endDate.toString(),
-                id: event.id,
+                isChecked: false,
+                id: uuidv4(),
               });
               nextOccurrence = iterator.next();
             }
@@ -79,7 +74,8 @@ function App() {
                 location: event.location,
                 start: event.startDate.toString(),
                 end: event.endDate.toString(),
-                id: event.id,
+                isChecked: false,
+                id: uuidv4(),
               },
             ];
           }
@@ -107,6 +103,7 @@ function App() {
     });
     return Array.from(uniqueEvents.values());
   };
+
   const handleDeleteEvent = (id) => {
     const updatedEvents = events.filter((event) => event.id !== id);
     setEvents(updatedEvents);
@@ -127,6 +124,7 @@ function App() {
       location,
       start: new Date(start).toISOString(),
       end: new Date(end).toISOString(),
+      isChecked: false,
       id: uuidv4(),
     };
 
@@ -139,6 +137,7 @@ function App() {
       location: "",
       start: "",
       end: "",
+      isChecked: false,
       id: uuidv4(),
     });
   };
@@ -149,6 +148,14 @@ function App() {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleToggleChecked = (id) => {
+    setEvents((prevEvents) =>
+      prevEvents.map((event) =>
+        event.id === id ? { ...event, isChecked: !event.isChecked } : event
+      )
+    );
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -166,6 +173,7 @@ function App() {
         getInputProps={getInputProps}
         onDelete={handleDeleteEvent}
         handleAddEvent={handleAddEvent}
+        onToggleChecked={handleToggleChecked}
       />
     </div>
   );

@@ -69,6 +69,7 @@ export function MainPage(props) {
               temp={event.id}
               event={event}
               onDelete={props.onDelete}
+              onToggleChecked={props.onToggleChecked}
             />
           ))}
         </ul>
