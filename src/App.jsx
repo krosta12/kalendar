@@ -113,7 +113,7 @@ function App() {
     const { title, description, location, start, end } = newEvent;
     if (!title || !start || !end) {
       alert(
-        "Пожалуйста, заполните обязательные поля: название, дату начала и дату окончания"
+        "Palun täitke nõutud väljad: pealkiri, alguskuupäev ja lõppkuupäev"
       );
       return;
     }

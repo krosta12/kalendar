@@ -27,22 +27,22 @@ export function Card({ temp, event, onDelete, onToggleChecked }) {
 
         {event.location && (
           <p>
-            <h3>Место:</h3> {event.location}
+            <h3>Koht:</h3> {event.location}
           </p>
         )}
 
         <p>
-          <h3>Дата начала:</h3> {new Date(event.start).toLocaleString()}, Дата
-          окончания: {new Date(event.end).toLocaleString()}
+          <h3>alguskuupäev:</h3> {new Date(event.start).toLocaleString()},
+          lõpetamine: {new Date(event.end).toLocaleString()}
         </p>
         <div className="ButtonHandler">
           <Button
-            text={event.isChecked ? "Убрать значение" : "Добавить значение"}
+            text={event.isChecked ? "Eemalda väärtus" : "Lisa väärtust"}
             onClick={handleButtonClick}
           />
           <Button
             className="deleteButton"
-            text="Удалить"
+            text="Kustuta"
             onClick={handleDelete}
           />
         </div>

@@ -9,14 +9,14 @@ export function MainPage(props) {
     <div style={{ display: "flex", height: "100vh" }}>
       <ProgressBar events={props.events} />
       <div style={{ marginLeft: "50px", padding: "20px", flex: 1 }}>
-        <h1>Google Calendar Clone</h1>
+        <h1>Kalendar by nonota</h1>
 
         <div {...props.getRootProps({ className: "dropzone" })}>
           <input {...props.getInputProps()} />
-          <p>Перетащите сюда .ics файл или кликните для загрузки</p>
+          <p>Lohistage ics-fail või klõpsake üleslaadimiseks.</p>
         </div>
 
-        <h2>Добавить новое событие:</h2>
+        <h2>Lisage uus sündmus:</h2>
         <div className="eventCreatingBox">
           <div className="postEvent">
             <Input
@@ -24,26 +24,26 @@ export function MainPage(props) {
               onChange={props.handleChange}
               type="text"
               name="title"
-              placeholder="Название"
+              placeholder="Nimi"
             />
             <Input
               type="text"
               name="description"
-              placeholder="Описание"
+              placeholder="Kirjeldus"
               value={props.newEvent.description}
               onChange={props.handleChange}
             />
             <Input
               type="text"
               name="location"
-              placeholder="Место"
+              placeholder="Koht"
               value={props.newEvent.location}
               onChange={props.handleChange}
             />
             <Input
               type="datetime-local"
               name="start"
-              placeholder="Дата начала"
+              placeholder="alguskuupäev"
               value={props.newEvent.start}
               onChange={props.handleChange}
               min={new Date().toISOString().slice(0, 16)}
@@ -51,17 +51,17 @@ export function MainPage(props) {
             <Input
               type="datetime-local"
               name="end"
-              placeholder="Дата окончания"
+              placeholder="Lõppkuupäev"
               value={props.newEvent.end}
               onChange={props.handleChange}
               min={props.newEvent.start}
             />
 
-            <Button onClick={props.handleAddEvent} text="Добавить событие" />
+            <Button onClick={props.handleAddEvent} text="Lisage sündmus" />
           </div>
         </div>
 
-        <h2>События:</h2>
+        <h2>Sündmused:</h2>
         <ul>
           {props.events.map((event) => (
             <Card
