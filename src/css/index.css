@@ -13,12 +13,26 @@ code {
     monospace;
 }
 
+.container {
+  position: absolute;
+  background-color: #ff6060;
+  width: 3vw;
+}
+
+.Bar {
+  position: relative;
+  background-color: #7cffaa;
+  width: 3vw;
+  transition: cubic-bezier(0.455, 0.03, 0.515, 0.955) 5s;
+}
+
 button {
   width: 10vw;
   margin: 0 1vw;
   height: 1.3vw;
   border-radius: .3vw;
   background-color: #91dab3;
+  font-size: 1vw;
 }
 
 .deleteButton {
