@@ -9,6 +9,7 @@
 .NonotaHandler {
   margin-left: 50px;
   padding: 20px;
+  width: 100%;
   flex: 1;
 }
 
@@ -33,4 +34,9 @@
   font-weight: 800;
   border-radius: 4vw;
   box-shadow: .2vw .5vw .5vw rgba(145, 255, 0, 0.491);
+  transition: all 1s;
+}
+
+.dropzone:hover {
+  background-color: #ffffff53;
 }

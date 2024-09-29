@@ -12,6 +12,7 @@ body {
   background-size: 100% 100%;
   height: 100%;
   position: absolute;
+  width: 100%;
 }
 
 body::before {
@@ -48,4 +49,12 @@ li {
   margin: 1vw 0;
   padding: 1vw 0;
   background-color: #ffffffa2;
+}
+
+input {
+  transition: all 1s;
+}
+
+input:hover {
+  background-color: #a6c1d7;
 }

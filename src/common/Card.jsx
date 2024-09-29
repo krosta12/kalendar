@@ -1,7 +1,9 @@
 import Button from "./Button";
 import "../../src/css/Card.css"
+import { RetunClass } from "./ReturnClass";
 
-export function Card({ temp, event, onDelete, onToggleChecked }) {
+
+export function Card({ temp, event, onDelete, onToggleChecked, now }) {
   const handleButtonClick = () => {
     onToggleChecked(event.id);
   };
@@ -12,14 +14,12 @@ export function Card({ temp, event, onDelete, onToggleChecked }) {
 
   return (
     <li
-      className={
-        new Date() > new Date(event.start) && event.isChecked
-          ? "List Done"
-          : new Date() > new Date(event.start) && "List isntDone"
-      }
-      key={temp}
-      id={"Card" + temp}
-    >
+  className={
+    RetunClass({ now: now, eventStart: new Date(event.start), eventIsChecked: event.isChecked })
+  }
+  key={temp}
+  id={"Card" + temp}
+>
       <div className="MainCardDiv">
         {event.title && <h2>{event.title}</h2>}
 
@@ -50,3 +50,4 @@ export function Card({ temp, event, onDelete, onToggleChecked }) {
     </li>
   );
 }
+

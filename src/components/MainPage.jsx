@@ -71,6 +71,7 @@ export function MainPage(props) {
               event={event}
               onDelete={props.onDelete}
               onToggleChecked={props.onToggleChecked}
+              now = {new Date()}
             />
           ))}
         </ul>

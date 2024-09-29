@@ -1,5 +1,6 @@
 .isntDone {
   background-color: #ff000066;
+  transition: all 1s;
 }
 
 .ButtonHandler {
@@ -9,6 +10,7 @@
 
 .Done {
   background-color: rgba(0, 255, 0, 0.361);
+  transition: all 1s;
 }
 
 
@@ -16,9 +18,26 @@
   background-color: #ef6868;
 }
 
+button:hover {
+  width: 11vw;
+}
+
+button {
+  transition: all .4s;
+}
+
 
 .MainCardDiv {
   display: flex;
   flex-direction: column;
   margin: 0 5vw;
+}
+
+.hasTime {
+  background-color: #ffff0055;
+  transition: all 1s;
+}
+
+.List {
+  transition: all .5s;
 }
