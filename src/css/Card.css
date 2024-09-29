@@ -1,0 +1,11 @@
+.List{
+    /* background-color: #fff; */
+}
+
+.isntDone {
+    background-color: #ff000066;
+  }
+
+.Done{
+    background-color: lightgreen;
+}

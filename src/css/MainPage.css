@@ -1,0 +1,10 @@
+.MainBox{
+    display: flex;
+    height: 100vw;
+}
+
+.NonotaHandler{
+    margin-left: 50px;
+    padding: 20px;
+    flex: 1;
+}
