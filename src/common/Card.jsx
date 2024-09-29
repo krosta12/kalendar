@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Button from "./Button";
 import "../../src/css/Card.css"
 

@@ -14,7 +14,7 @@ export function MainPage(props) {
 
         <div {...props.getRootProps({ className: "dropzone" })}>
           <input {...props.getInputProps()} />
-          <p>Lohistage ics-fail või klõpsake üleslaadimiseks.</p>
+          <p className="FileDropper">Lohistage ics-fail või klõpsake üleslaadimiseks.</p>
         </div>
 
         <h2>Lisage uus sündmus:</h2>

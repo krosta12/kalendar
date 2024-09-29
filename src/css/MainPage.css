@@ -1,10 +1,36 @@
-.MainBox{
-    display: flex;
-    height: 100vw;
+.MainBox {
+  display: flex;
 }
 
-.NonotaHandler{
-    margin-left: 50px;
-    padding: 20px;
-    flex: 1;
+.FileDropper {
+  color: rgba(30, 25, 0, 0.9);
+}
+
+.NonotaHandler {
+  margin-left: 50px;
+  padding: 20px;
+  flex: 1;
+}
+
+
+.eventCreatingBox {
+  display: flex;
+  justify-content: center;
+}
+
+
+.postEvent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dropzone {
+  background-color: #fcfcfcb1;
+  padding: 4vw;
+  text-align: center;
+  tab-size: 2vw;
+  font-weight: 800;
+  border-radius: 4vw;
+  box-shadow: .2vw .5vw .5vw rgba(145, 255, 0, 0.491);
 }

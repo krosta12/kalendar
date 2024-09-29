@@ -1,11 +1,24 @@
-.List{
-    /* background-color: #fff; */
+.isntDone {
+  background-color: #ff000066;
 }
 
-.isntDone {
-    background-color: #ff000066;
-  }
+.ButtonHandler {
+  display: flex;
+  justify-content: space-around;
+}
 
-.Done{
-    background-color: lightgreen;
+.Done {
+  background-color: rgba(0, 255, 0, 0.361);
+}
+
+
+.deleteButton {
+  background-color: #ef6868;
+}
+
+
+.MainCardDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5vw;
 }

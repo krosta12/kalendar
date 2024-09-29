@@ -3,6 +3,7 @@ import { useDropzone } from "react-dropzone";
 import ICAL from "ical.js";
 import { MainPage } from "./components/MainPage";
 import { v4 as uuidv4 } from "uuid";
+import "./css/App.css"
 
 function App() {
   const [events, setEvents] = useState([]);

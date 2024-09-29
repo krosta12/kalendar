@@ -5,7 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #1d4ccd94;
+  background-color: rgba(12, 83, 83, 0.361);
+  background-image: url("../IMGs/BG.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  height: 100%;
+  position: absolute;
+}
+
+body::before {
+  background-color: rgba(0, 0, 0, .5);
 }
 
 code {
@@ -13,34 +23,16 @@ code {
     monospace;
 }
 
-.container {
-  position: absolute;
-  background-color: #ff6060;
-  width: 3vw;
-}
-
-.Bar {
-  position: relative;
-  background-color: #7cffaa;
-  width: 3vw;
-  transition: cubic-bezier(0.455, 0.03, 0.515, 0.955) 5s;
-}
-
 button {
   width: 10vw;
   margin: 0 1vw;
   height: 1.3vw;
   border-radius: .3vw;
-  background-color: #91dab3;
   font-size: 1vw;
   padding: 1vw 0;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.deleteButton {
-  background-color: #ef6868;
 }
 
 label {
@@ -51,41 +43,9 @@ h3 {
   display: inline-block;
 }
 
-.MainCardDiv {
-  display: flex;
-  flex-direction: column;
-  margin: 0 5vw;
-}
-
-.eventCreatingBox {
-  display: flex;
-  justify-content: center;
-}
-
-.postEvent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-.dropzone {
-  background-color: #fcfcfcb1;
-  padding: 4vw;
-  text-align: center;
-  tab-size: 2vw;
-  font-weight: 800;
-  border-radius: 4vw;
-}
-
 li {
   border-radius: 1vw;
   margin: 1vw 0;
   padding: 1vw 0;
   background-color: #ffffffa2;
-}
-
-.ButtonHandler {
-  display: flex;
-  justify-content: space-around;
 }
